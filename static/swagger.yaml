@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Sales Dashboard API
+  description: API for Sales Dashboard with CRUD operations.
+  version: "1.0"
+paths:
+  /sales:
+    get:
+      summary: Get all sales
+      responses:
+        '200':
+          description: A list of sales
+    post:
+      summary: Add a new sale
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                quantity:
+                  type: integer
+      responses:
+        '201':
+          description: Sale added successfully
+  /sales/{sale_id}:
+    put:
+      summary: Update an existing sale
+      parameters:
+        - name: sale_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                item:
+                  type: string
+                price:
+                  type: number
+                  format: float
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          description: Sale updated successfully
+    delete:
+      summary: Delete a sale
+      parameters:
+        - name: sale_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Sale deleted successfully
+  /sales/statistics:
+    get:
+      summary: Get sales statistics
+      responses:
+        '200':
+          description: Sales statistics
