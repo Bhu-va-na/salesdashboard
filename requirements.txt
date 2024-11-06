@@ -4,6 +4,6 @@ gunicorn
 requests
 connexion[swagger-ui]
 jsonify
-"connexion[flask]"
+connexion[flask]
 flask
 flask-swagger-ui 
