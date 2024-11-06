@@ -35,12 +35,27 @@ class SalesAPI:
     def get_sales(self):
         return self.sales
 
+    def validate_sale_data(data):
+        required_fields = ["item", "price", "quantity", "customer", "date_of_sale", "category", "salesperson"]
+        for field in required_fields:
+            if field not in data:
+                return f"Missing required field: {field}"
+        return None
+
     def add_sale(self, data):
-        new_id = max(sale['id'] for sale in self.sales) + 1 if self.sales else 1
-        new_sale = {**data, "id": new_id}
-        self.sales.append(new_sale)
-        return {"message": "Sale added successfully!", "sale": new_sale}, 201
+        validation_error = self.validate_sale_data(data)
+        if validation_error:
+            return {"message": validation_error}, 400
     
+        try:
+            new_id = max(sale['id'] for sale in self.sales) + 1 if self.sales else 1
+            new_sale = {**data, "id": new_id}
+            self.sales.append(new_sale)
+            return {"message": "Sale added successfully!", "sale": new_sale}, 201
+        except Exception as e:
+            return {"message": f"An error occurred: {str(e)}"}, 500
+
+
     def update_sale(self, sale_id, data):
         for sale in self.sales:
             if sale['id'] == sale_id:
