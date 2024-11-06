@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Sales Dashboard</h1>
+        <div class="stats">
+            <div class="stat">
+                <h2>Total Sales</h2>
+                <p>${{ total_sales }}</p>
+            </div>
+            <div class="stat">
+                <h2>Total Transactions</h2>
+                <p>{{ total_transactions }}</p>
+            </div>
+            <div class="stat">
+                <h2>Average Sale</h2>
+                <p>${{ average_sale }}</p>
+            </div>
+            <div class="stat">
+                <h2>Total Quantity Sold</h2>
+                <p>{{ total_quantity }}</p>
+            </div>
+            <div class="stat">
+                <h2>Best Selling Product</h2>
+                <p>{{ best_selling }}</p>
+            </div>
+        </div>
+
+        <h2>Sales Data</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sale in sales %}
+                <tr>
+                    <td>{{ sale.item }}</td>
+                    <td>${{ sale.price }}</td>
+                    <td>{{ sale.quantity }}</td>
+                    <td>${{ sale.price * sale.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button onclick="window.location.href='/swagger'">Open API Docs</button>
+    </div>
+</body>
+</html>
