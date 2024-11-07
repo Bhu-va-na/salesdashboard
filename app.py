@@ -34,13 +34,46 @@ def add_sale():
     data = request.get_json()
     return jsonify(sales_api.add_sale(data))
 
-@app.route('/sales/<int:sale_id>', methods=['PUT'])
-def update_sale(sale_id):
+@app.route('/sales', methods=['PUT'])
+def update_sale():
     data = request.get_json()
-    return jsonify(sales_api.update_sale(sale_id, data))
 
-@app.route('/sales/<int:sale_id>', methods=['DELETE'])
-def delete_sale(sale_id):
+    # Check if the sale_id is provided in the request body
+    sale_id = data.get('id')
+    if not sale_id:
+        return jsonify({"message": "Sale ID is required"}), 400
+
+    # Check if sale exists with the provided ID
+    sale = next((sale for sale in sales_api.sales if sale['id'] == sale_id), None)
+    if not sale:
+        return jsonify({"message": "Sale not found!"}), 404
+
+    # Validate that the required fields are in the request data
+    required_fields = ["item", "price", "quantity", "customer", "date_of_sale", "category", "salesperson"]
+    for field in required_fields:
+        if field not in data:
+            return jsonify({"message": f"Missing required field: {field}"}), 400
+
+    # Validate data types or ranges (example for price and quantity)
+    if not isinstance(data.get('price'), (int, float)) or data.get('price') <= 0:
+        return jsonify({"message": "Price must be a positive number"}), 400
+    
+    if not isinstance(data.get('quantity'), int) or data.get('quantity') <= 0:
+        return jsonify({"message": "Quantity must be a positive integer"}), 400
+
+    # Update the sale with the new data
+    sale.update(data)
+    
+    return jsonify({"message": "Sale updated successfully!", "sale": sale})
+
+@app.route('/sales', methods=['DELETE'])
+def delete_sale():
+    data = request.get_json()
+    sale_id = data.get('id')
+    
+    if not sale_id:
+        return jsonify({"message": "Sale ID is required"}), 400
+    
     return jsonify(sales_api.delete_sale(sale_id))
 
 @app.route('/sales/statistics', methods=['GET'])
@@ -48,5 +81,4 @@ def sales_statistics():
     return jsonify(sales_api.sales_statistics())
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-
+    app.run(debug=True)
