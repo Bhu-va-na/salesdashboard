@@ -1,12 +1,33 @@
 class SalesAPI:
     def __init__(self):
         self.sales = [
-            {"id": 1, "item": "Laptop", "price": 1500, "quantity": 1, "customer": "John Doe", "date_of_sale": "2024-10-01", "category": "Electronics", "salesperson": "Alice"},
-            {"id": 2, "item": "Phone", "price": 2000, "quantity": 1, "customer": "Jane Smith", "date_of_sale": "2024-10-02", "category": "Electronics", "salesperson": "Bob"},
-            {"id": 3, "item": "Headphones", "price": 250, "quantity": 2, "customer": "David Lee", "date_of_sale": "2024-10-03", "category": "Accessories", "salesperson": "Alice"},
-            {"id": 4, "item": "Monitor", "price": 350, "quantity": 1, "customer": "Sara Kim", "date_of_sale": "2024-10-04", "category": "Electronics", "salesperson": "Charlie"},
-            {"id": 5, "item": "Keyboard", "price": 100, "quantity": 3, "customer": "Mike Jones", "date_of_sale": "2024-10-05", "category": "Accessories", "salesperson": "Alice"}
-        ]
+    {"id": 1, "item": "Laptop", "price": 1500, "quantity": 1, "customer": "John Doe", "date_of_sale": "2024-10-01", "category": "Electronics", "salesperson": "Alice"},
+    {"id": 2, "item": "Phone", "price": 2000, "quantity": 1, "customer": "Jane Smith", "date_of_sale": "2024-10-02", "category": "Electronics", "salesperson": "Bob"},
+    {"id": 3, "item": "Headphones", "price": 250, "quantity": 2, "customer": "David Lee", "date_of_sale": "2024-10-03", "category": "Accessories", "salesperson": "Alice"},
+    {"id": 4, "item": "Monitor", "price": 350, "quantity": 1, "customer": "Sara Kim", "date_of_sale": "2024-10-04", "category": "Electronics", "salesperson": "Charlie"},
+    {"id": 5, "item": "Keyboard", "price": 100, "quantity": 3, "customer": "Mike Jones", "date_of_sale": "2024-10-05", "category": "Accessories", "salesperson": "Alice"},
+    {"id": 6, "item": "Tablet", "price": 500, "quantity": 2, "customer": "Emily Clark", "date_of_sale": "2024-10-06", "category": "Electronics", "salesperson": "Bob"},
+    {"id": 7, "item": "Smartwatch", "price": 200, "quantity": 1, "customer": "James White", "date_of_sale": "2024-10-07", "category": "Accessories", "salesperson": "Alice"},
+    {"id": 8, "item": "Camera", "price": 1200, "quantity": 1, "customer": "Sophia Davis", "date_of_sale": "2024-10-08", "category": "Electronics", "salesperson": "Charlie"},
+    {"id": 9, "item": "Printer", "price": 150, "quantity": 2, "customer": "Daniel Harris", "date_of_sale": "2024-10-09", "category": "Electronics", "salesperson": "Bob"},
+    {"id": 10, "item": "Bluetooth Speaker", "price": 100, "quantity": 3, "customer": "Isabella Martinez", "date_of_sale": "2024-10-10", "category": "Accessories", "salesperson": "Alice"},
+    {"id": 11, "item": "Gaming Chair", "price": 300, "quantity": 1, "customer": "Oliver Wilson", "date_of_sale": "2024-10-11", "category": "Furniture", "salesperson": "Bob"},
+    {"id": 12, "item": "Desk", "price": 200, "quantity": 2, "customer": "Mason Moore", "date_of_sale": "2024-10-12", "category": "Furniture", "salesperson": "Charlie"},
+    {"id": 13, "item": "Phone Case", "price": 20, "quantity": 10, "customer": "Liam Taylor", "date_of_sale": "2024-10-13", "category": "Accessories", "salesperson": "Alice"},
+    {"id": 14, "item": "Laptop Bag", "price": 50, "quantity": 5, "customer": "Amelia Lee", "date_of_sale": "2024-10-14", "category": "Accessories", "salesperson": "Bob"},
+    {"id": 15, "item": "Flash Drive", "price": 30, "quantity": 15, "customer": "Lucas Scott", "date_of_sale": "2024-10-15", "category": "Accessories", "salesperson": "Charlie"},
+    {"id": 16, "item": "Smartphone", "price": 1800, "quantity": 1, "customer": "Benjamin Harris", "date_of_sale": "2024-10-16", "category": "Electronics", "salesperson": "Alice"},
+    {"id": 17, "item": "External Hard Drive", "price": 120, "quantity": 2, "customer": "Harper Adams", "date_of_sale": "2024-10-17", "category": "Electronics", "salesperson": "Bob"},
+    {"id": 18, "item": "Projector", "price": 800, "quantity": 1, "customer": "Ella Clark", "date_of_sale": "2024-10-18", "category": "Electronics", "salesperson": "Charlie"},
+    {"id": 19, "item": "Microphone", "price": 150, "quantity": 3, "customer": "Aiden Mitchell", "date_of_sale": "2024-10-19", "category": "Accessories", "salesperson": "Alice"},
+    {"id": 20, "item": "Webcam", "price": 90, "quantity": 5, "customer": "Mia Brown", "date_of_sale": "2024-10-20", "category": "Electronics", "salesperson": "Bob"},
+    {"id": 21, "item": "Smart TV", "price": 1200, "quantity": 1, "customer": "Jackson Perez", "date_of_sale": "2024-10-21", "category": "Electronics", "salesperson": "Charlie"},
+    {"id": 22, "item": "Laptop Cooling Pad", "price": 40, "quantity": 10, "customer": "Madison Harris", "date_of_sale": "2024-10-22", "category": "Accessories", "salesperson": "Alice"},
+    {"id": 23, "item": "Tablet Stand", "price": 30, "quantity": 6, "customer": "Carter Clark", "date_of_sale": "2024-10-23", "category": "Accessories", "salesperson": "Bob"},
+    {"id": 24, "item": "E-Reader", "price": 100, "quantity": 2, "customer": "Charlotte Wilson", "date_of_sale": "2024-10-24", "category": "Electronics", "salesperson": "Alice"},
+    {"id": 25, "item": "Smart Door Lock", "price": 250, "quantity": 1, "customer": "Zoe Robinson", "date_of_sale": "2024-10-25", "category": "Home Automation", "salesperson": "Charlie"}
+]
+
     
     def total_sales(self):
         return sum(sale['price'] * sale['quantity'] for sale in self.sales)
